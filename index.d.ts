@@ -2,7 +2,7 @@
 // Project: https://github.com/whitedogg13/react-native-nfc-manager
 // Definitions by: April Ayres <april.ayres@papercut.com> and Paul Huynh <paul.huynh@papercut.com>
 
-declare module 'react-native-nfc-manager' {
+declare module 'react-native-gizwits-nfc-manager' {
   export enum NfcEvents {
     DiscoverTag = 'NfcManagerDiscoverTag',
     DiscoverBackgroundTag = 'NfcManagerDiscoverBackgroundTag',
