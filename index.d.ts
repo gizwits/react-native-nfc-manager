@@ -92,7 +92,7 @@ declare module 'react-native-gizwits-nfc-manager' {
   }
 
   interface NdefHandler {
-    writeNdefMessage: (bytes: number[]) => Promise<void>;
+    writeNdefMessage: (bytes: number[] , options?: { reconnectAfterWrite: boolean }) => Promise<void>;
     getNdefMessage: () => Promise<TagEvent | null>;
     makeReadOnly: () => Promise<void>;
     getNdefStatus: () => Promise<{
@@ -266,6 +266,7 @@ declare module 'react-native-gizwits-nfc-manager' {
             le: number;
           },
     ) => Promise<{response: number[]; sw1: number; sw2: number}>;
+    restartTechnologyRequestIOS: () => Promise<NfcTech | null>;
     iso15693HandlerIOS: Iso15693HandlerIOS;
 
     /**
@@ -276,6 +277,8 @@ declare module 'react-native-gizwits-nfc-manager' {
     transceive(bytes: number[]): Promise<number[]>;
     getMaxTransceiveLength(): Promise<number>;
     setTimeout(timeout: number): Promise<void>;
+    connect: (techs: NfcTech[]) => Promise<void>;
+    close: () => Promise<void>;
     mifareClassicHandlerAndroid: MifareClassicHandlerAndroid;
     mifareUltralightHandlerAndroid: MifareUltralightHandlerAndroid;
     ndefFormatableHandlerAndroid: NdefFormatableHandlerAndroid;
