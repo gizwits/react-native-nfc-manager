@@ -41,6 +41,7 @@ import org.json.JSONException;
 
 import java.util.*;
 
+
 class NfcManager extends ReactContextBaseJavaModule implements ActivityEventListener, LifecycleEventListener {
     private static final String LOG_TAG = "ReactNativeNfcManager";
     private final List<IntentFilter> intentFilters = new ArrayList<>();
@@ -967,8 +968,11 @@ class NfcManager extends ReactContextBaseJavaModule implements ActivityEventList
                 callback.invoke(ERR_GET_ACTIVITY_FAIL);
                 return;
             }
-
-            currentActivity.registerReceiver(mReceiver, filter);
+            if (Build.VERSION.SDK_INT >= 34 && context.getApplicationInfo().targetSdkVersion >= 34) {
+                currentActivity.registerReceiver(mReceiver, filter, Context.RECEIVER_EXPORTED);
+            } else {
+                currentActivity.registerReceiver(mReceiver, filter);
+            }
             Intent launchIntent = currentActivity.getIntent();
             // we consider the launching intent to be background
             bgTag = parseNfcIntent(launchIntent);

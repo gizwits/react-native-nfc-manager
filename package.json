@@ -1,6 +1,6 @@
 {
   "name": "react-native-gizwits-nfc-manager",
-  "version": "3.14.9-nfc",
+  "version": "3.15.0-nfc",
   "description": "A NFC module for react native.",
   "main": "src/index.js",
   "repository": {
